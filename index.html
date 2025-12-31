@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chenmuze_ 的吐槽现场 - mc.axzt.top 服务器踩坑记录</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23cccccc' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .header h1 {
+            color: #d9534f;
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 4px rgba(217, 83, 79, 0.2);
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* 吐槽人样式 */
+        .toucher-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 18px;
+            background-color: #fff8f8;
+            border-radius: 8px;
+            border: 2px dashed #d9534f;
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .server-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 5px solid #d9534f;
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .rant-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .rant-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #d9534f;
+        }
+
+        .rant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        .rant-card h3 {
+            color: #333;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rant-card h3 i {
+            color: #d9534f;
+            font-size: 1.6rem;
+        }
+
+        .rant-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .rant-card .tip {
+            color: #888;
+            font-size: 0.9rem;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+            margin-top: 15px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer .bold {
+            color: #d9534f;
+            font-weight: 600;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .rant-list {
+                grid-template-columns: 1fr;
+            }
+
+            .rant-card {
+                padding: 20px;
+            }
+        }
+    </style>
+    <!-- 引入图标库（可选，增强视觉效果） -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部标题 -->
+        <div class="header">
+            <h1>「大型踩坑」Chenmuze_ 怒喷 mc.axzt.top 服务器</h1>
+            <p>Chenmuze_ 亲测踩坑，全是真实泪点！避雷预警，谁玩谁踩雷！</p>
+        </div>
+
+        <!-- 吐槽人信息 -->
+        <div class="toucher-info">
+            吐槽人：Chenmuze_ | 吐槽对象：Minecraft 服务器 IP - mc.axzt.top
+        </div>
+
+        <!-- 服务器信息 -->
+        <div class="server-info">
+            服务器核心槽点：卡顿、掉线、插件故障、管理摆烂（Chenmuze_ 亲测验证）
+        </div>
+
+        <!-- 吐槽列表（已删除“莫名其妙被ban”版块） -->
+        <div class="rant-list">
+            <!-- 槽点1：卡顿严重 -->
+            <div class="rant-card">
+                <h3><i class="fa fa-exclamation-triangle"></i> 卡顿到怀疑人生，帧数过山车</h3>
+                <p>作为Chenmuze_，我必须说这服务器的卡顿程度真的离谱！我平时站着不动帧数都能从60掉到10，一进村庄直接卡成幻灯片，挖矿的时候挖一块石头要等3秒才显示破坏效果。</p>
+                <p>更离谱的是，我和朋友联机的时候，朋友直接变成“瞬移怪”，明明看着他在眼前，下一秒就出现在10米外，我完全没法和他正常组队生存。</p>
+                <div class="tip">Chenmuze_ 亲测小提示：就算把光影全关、画质调到最低，卡顿问题依然无解，疑似服务器配置拉胯或后台占用过高。</div>
+            </div>
+
+            <!-- 槽点2：频繁掉线，存档丢失 -->
+            <div class="rant-card">
+                <h3><i class="fa fa-wifi"></i> 掉线如家常便饭，存档说没就没</h3>
+                <p>我Chenmuze_亲测，这服务器平均每15分钟必掉一次线！有次我刚打完末影龙，准备捡战利品，突然就弹出“与服务器失去连接”，重连之后发现自己回到了出生点，战利品直接消失！</p>
+                <p>还有一次，我花了3小时建的房子，掉线后重连，房子直接少了一半，方块全变成了空气，我找管理员反馈也没人理，纯纯浪费我的时间和精力。</p>
+                <div class="tip">Chenmuze_ 血泪教训：建议每5分钟手动备份一次存档，不然辛苦肝的东西可能一夜回到解放前。</div>
+            </div>
+
+            <!-- 槽点3：功能故障，插件拉胯 -->
+            <div class="rant-card">
+                <h3><i class="fa fa-plug"></i> 插件故障频发，功能形同虚设</h3>
+                <p>我Chenmuze_试了服务器里的所有核心插件，基本都是半残状态：传送指令用不了，我输入/home直接提示“未知指令”；经济系统紊乱，我卖东西得不到金币，买东西却被扣了双倍钱。</p>
+                <p>领地插件更是离谱，我明明花了金币圈了地，别人还是能随意拆我的方块，我举报之后管理员说“插件正在维护”，结果维护了半个月也没修好。</p>
+                <div class="tip">Chenmuze_ 总结：别对服务器插件抱有任何期待，基本等于纯生存裸服，还不如自己开单机玩。</div>
+            </div>
+
+            <!-- 槽点4：管理员摆烂，反馈无门 -->
+            <div class="rant-card">
+                <h3><i class="fa fa-user-times"></i> 管理员摆烂，问题反馈石沉大海</h3>
+                <p>我Chenmuze_遇到卡顿、掉线、存档丢失等问题，多次找管理员反馈，要么不回消息，要么就丢一句“自己解决”“服务器就这样”，态度极其恶劣，完全没有作为管理员的责任心。</p>
+                <p>我还发现有人开挂作弊，特意整理了证据提交给管理员，结果管理员不仅不处理开挂玩家，还把我这个反馈的玩家禁言了，简直离谱到家，毫无管理可言。</p>
+                <div class="tip">Chenmuze_ 忠告：别指望管理员能解决任何问题，遇到问题只能自认倒霉，趁早换服务器才是王道。</div>
+            </div>
+
+            <!-- 槽点5：人数虚标，卡顿加倍 -->
+            <div class="rant-card">
+                <h3><i class="fa fa-users"></i> 人数虚标严重，人少也卡顿</h3>
+                <p>服务器宣传说能容纳200人同时在线，我Chenmuze_观察了好几天，实际在线人数不到20人，就算这样也卡顿到没法玩，我严重怀疑服务器配置是“十年前的老古董”。</p>
+                <p>有一次我半夜上线，整个服务器就我自己一个人，结果我挖矿还是会卡顿，加载区块要等半天，完全感受不到“单人独享服务器”的流畅感，太让人失望了。</p>
+                <div class="tip">Chenmuze_ 提醒：宣传的人数看看就好，实际体验和人数完全不成正比，配置拉胯才是硬伤。</div>
+            </div>
+        </div>
+
+        <!-- 底部总结 -->
+        <div class="footer">
+            <p class="bold">Chenmuze_ 最终总结：mc.axzt.top 服务器慎入！慎入！慎入！</p>
+            <p>作为亲测者Chenmuze_，可以明确说：卡顿、掉线、插件故障、管理员摆烂，这些槽点几乎全覆盖，与其在这里浪费时间和精力，不如换一个靠谱的服务器。</p>
+            <p>Chenmuze_ 最后提醒：玩MC服务器，一定要先试玩，再决定是否长期入驻！</p>
+            <p>吐槽人：Chenmuze_ | 吐槽日期：2025年12月31日</p>
+        </div>
+    </div>
+</body>
+</html>
